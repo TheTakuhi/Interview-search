@@ -1,0 +1,14 @@
+.search-result {
+    padding: 0.5rem 1rem;
+}
+
+.search-result:hover {
+    cursor: pointer;
+    background-color: #cfdaff;
+}
+
+.customModal {
+    background: #ffffff;
+    max-width: 500px;
+    width: 100%;
+}
