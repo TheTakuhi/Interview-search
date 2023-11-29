@@ -4,19 +4,31 @@ import {useState} from "react";
 
 const SearchBar = ({ setResults }) => {
     const [input, setInput] = useState("");
-    const fetchData = (value) => {
-        fetch("https://jsonplaceholder.typicode.com/users").then((response) => response.json()).then(json => {
+    let timeoutId;
+
+    const fetchData = async (value) => {
+        try {
+            const response = await fetch("https://jsonplaceholder.typicode.com/users");
+            const json = await response.json();
             const results = json.filter((movie) => {
                 return value && movie && movie.name && movie.name.toLowerCase().includes(value);
             });
             setResults(results);
-        });
-    }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
 
     const handleChange = (value) => {
         setInput(value);
-        fetchData(value);
-    }
+        clearTimeout(timeoutId);
+
+        timeoutId = setTimeout(() => {
+            if (value.length % 2 === 1) {
+                fetchData(value);
+            }
+        }, 300);
+    };
 
     return (
         <div className="input-wrapper">

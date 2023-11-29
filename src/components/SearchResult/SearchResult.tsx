@@ -8,7 +8,7 @@ const SearchResult = ({ result }) => {
 
     return (
         <div className="search-result" onClick={() => setModalIsOpen(true)}>
-            {result.name}
+            {result.id}. {result.name}
             <Modal
                 open={modalIsOpen}
                 onClose={() => setModalIsOpen(false)}
@@ -19,8 +19,9 @@ const SearchResult = ({ result }) => {
             >
                 <h2>{result.name}</h2>
                 <div>
-                    <p>Info: {result.info}</p>
-                    <p>Age: {result.name}</p>
+                    <p>Username: {result.username}</p>
+                    <p>Email: {result.email}</p>
+                    <p>Phone: {result.phone}</p>
                 </div>
             </Modal>
         </div>
