@@ -6,8 +6,10 @@ import 'react-responsive-modal/styles.css';
 const SearchResult = ({ result }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
+    //TODO style button
     return (
-        <div className="search-result" onClick={() => setModalIsOpen(true)}>
+        <div className="search-result"  >
+            <button style={{marginRight: "1rem", cursor: "pointer"}} onClick={() => setModalIsOpen(true)}>Detail</button>
             {result.id}. {result.name}
             <Modal
                 open={modalIsOpen}
@@ -17,8 +19,9 @@ const SearchResult = ({ result }) => {
                     modal: 'customModal',
                 }}
             >
-                <h2>{result.name}</h2>
-                <div>
+
+                <div style={{width: "80%"}}>
+                    <h2>{result.name}</h2>
                     <p>Username: {result.username}</p>
                     <p>Email: {result.email}</p>
                     <p>Phone: {result.phone}</p>
