@@ -13,3 +13,13 @@
     align-items: center;
     min-width: 250px;
 }
+
+.detail-button {
+    margin-right: 1rem;
+    cursor: pointer;
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+    border-color: #124e88;
+    background-color: #0963bb;
+    color: #FFFFFF;
+}

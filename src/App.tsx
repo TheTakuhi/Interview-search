@@ -1,12 +1,15 @@
-import './App.css'
-import SearchBar from "./components/SearchBar";
 import {useState} from "react";
+import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
+import {User} from "./models/User";
+
+import './App.css'
+
 
 function App() {
-  const [results, setResults] = useState([]);
+    const [results, setResults] = useState<User[]>([]);
 
-  return (
+    return (
     <>
       <div className="search-bar-container">
         <SearchBar setResults={setResults} />

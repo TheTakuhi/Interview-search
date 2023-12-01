@@ -1,17 +1,23 @@
+import {FC, useState} from "react";
 import {FaSearch} from "react-icons/fa"
+import {User} from "../../models/User";
+
 import "./SearchBar.css"
-import {useState} from "react";
 
-const SearchBar = ({ setResults }) => {
+interface SearchBarProps {
+    setResults: React.Dispatch<React.SetStateAction<User[]>>;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ setResults }) => {
     const [input, setInput] = useState("");
-    let timeoutId;
+    let timeoutId: number;
 
-    const fetchData = async (value) => {
+    const fetchData = async (value: string) => {
         try {
             const response = await fetch("https://jsonplaceholder.typicode.com/users");
             const json = await response.json();
-            const results = json.filter((movie) => {
-                return value && movie && movie.name && movie.name.toLowerCase().includes(value);
+            const results = json.filter((user: User) => {
+                return value && user && user.name && user.name.toLowerCase().includes(value);
             });
             setResults(results);
         } catch (error) {
@@ -19,7 +25,7 @@ const SearchBar = ({ setResults }) => {
         }
     };
 
-    const handleChange = (value) => {
+    const handleChange = (value: string) => {
         setInput(value);
         clearTimeout(timeoutId);
 

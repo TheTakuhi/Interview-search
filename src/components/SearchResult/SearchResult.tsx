@@ -1,15 +1,20 @@
-import "./SearchResult.css"
-import {useState} from "react";
+import {FC, useState} from "react";
 import Modal from "react-responsive-modal";
-import 'react-responsive-modal/styles.css';
 
-const SearchResult = ({ result }) => {
+import 'react-responsive-modal/styles.css';
+import "./SearchResult.css"
+import {User} from "../../models/User.ts";
+
+interface SearchResultProps {
+    result: User;
+}
+
+const SearchResult: FC<SearchResultProps> = ({ result }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    //TODO style button
     return (
         <div className="search-result"  >
-            <button style={{marginRight: "1rem", cursor: "pointer"}} onClick={() => setModalIsOpen(true)}>Detail</button>
+            <button className="detail-button" onClick={() => setModalIsOpen(true)}>Detail</button>
             {result.id}. {result.name}
             <Modal
                 open={modalIsOpen}
@@ -19,7 +24,6 @@ const SearchResult = ({ result }) => {
                     modal: 'customModal',
                 }}
             >
-
                 <div style={{width: "80%"}}>
                     <h2>{result.name}</h2>
                     <p>Username: {result.username}</p>
@@ -30,6 +34,5 @@ const SearchResult = ({ result }) => {
         </div>
     );
 };
-
 
 export default SearchResult;

@@ -1,11 +1,18 @@
-import "./SearchResults.css"
 import SearchResult from "../SearchResult";
+import {User} from "../../models/User";
 
-const SearchResults = ({results}) => {
+import "./SearchResults.css"
+import {FC} from "react";
+
+interface SearchResultsProps {
+    results: User[];
+}
+
+const SearchResults: FC<SearchResultsProps> = ({ results }) => {
     return (
         <div className="results-list">
             {
-                results.map((result, id) => {
+                results.map((result: User, id: number) => {
                     return <SearchResult result={result} key={id}/>
                 })
             }
